@@ -34,7 +34,7 @@ with fresh_col:
         st.rerun()
     st.markdown(
         f'<div class="fp-freshness">Data as of {periods.max_date:%d %b %Y} '
-        f"· refreshes on reopen after 30 min.</div>",
+        f"· auto-updates next time someone visits, if it's 30+ min old.</div>",
         unsafe_allow_html=True,
     )
 
