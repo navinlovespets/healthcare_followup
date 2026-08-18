@@ -27,7 +27,7 @@ df = load_base_data()
 periods = metrics.build_periods(df)
 snap = metrics.network_snapshot(df, periods)
 
-_, fresh_text, fresh_btn = st.columns([5, 2.4, 0.9], vertical_alignment="center", gap="small")
+_, fresh_text, fresh_btn = st.columns([4, 3.4, 1], vertical_alignment="center", gap="small")
 with fresh_text:
     st.markdown(
         f'<div class="fp-freshness">Data as of {periods.max_date:%d %b %Y} '

@@ -124,7 +124,6 @@ def inject_base_css():
             color: #a8a79c;
             font-size: .82rem;
             text-align: right;
-            white-space: nowrap;
         }
         </style>
         """,
