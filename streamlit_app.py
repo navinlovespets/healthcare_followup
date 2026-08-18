@@ -27,6 +27,20 @@ df = load_base_data()
 periods = metrics.build_periods(df)
 snap = metrics.network_snapshot(df, periods)
 
+fresh_l, fresh_r = st.columns([5, 1])
+with fresh_l:
+    st.markdown(
+        f'<span class="fp-footnote">Data as of {periods.max_date:%d %b %Y} '
+        f"· refreshes on reopen after 30 min.</span>",
+        unsafe_allow_html=True,
+    )
+with fresh_r:
+    if st.button("Refresh now", width="stretch"):
+        load_base_data.clear()
+        st.rerun()
+
+st.write("")
+
 delta = None
 if snap["mtd_pct"] is not None and snap["lmtd_pct"] is not None:
     delta = f"{snap['mtd_pct'] - snap['lmtd_pct']:+.0f} pp vs last month"
@@ -72,18 +86,3 @@ for col, (path, title, body) in zip(cols, cards):
             st.markdown(f'<div class="fp-card-body">{body}</div>', unsafe_allow_html=True)
             st.page_link(path, label="Open dashboard →")
 
-st.write("")
-st.write("")
-
-footer_l, footer_r = st.columns([4, 1])
-with footer_l:
-    st.markdown(
-        f'<span class="fp-footnote">Data current through '
-        f'{periods.max_date:%d %b %Y} · pulled fresh whenever this page is opened '
-        f"and more than 30 minutes have passed since the last pull.</span>",
-        unsafe_allow_html=True,
-    )
-with footer_r:
-    if st.button("Refresh now", width="stretch"):
-        load_base_data.clear()
-        st.rerun()
