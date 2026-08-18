@@ -1,113 +1,28 @@
-from datetime import date
-
 import streamlit as st
 
-from dashboard import metrics
 from dashboard.auth import require_login
-from dashboard.data_loader import load_base_data
-from dashboard.ui import (
-    ORG_KICKER,
-    PRODUCT_NAME,
-    divider,
-    eyebrow,
-    fmt_pct,
-    inject_base_css,
-    kpi_row,
-    page_header,
-)
+from dashboard.ui import PRODUCT_NAME, inject_base_css
 
 st.set_page_config(page_title=PRODUCT_NAME, layout="wide")
 require_login()
 inject_base_css()
 
-df = load_base_data(date.today())
-periods = metrics.build_periods(df)
-snap = metrics.network_snapshot(df, periods)
+home = st.Page("views/home.py", title="Home", icon=":material/home:", default=True)
 
-header_col, fresh_col = st.columns([2.6, 1.4], gap="large")
-with header_col:
-    page_header(
-        ORG_KICKER,
-        PRODUCT_NAME,
-        "How reliably a completed appointment turns into a scheduled next step — "
-        "tracked by episode type, clinic, and doctor, updated daily.",
-    )
-with fresh_col:
-    if st.button(
-        f"Data as of {periods.max_date:%d %b %Y} · Refresh",
-        icon=":material/refresh:",
-        width="stretch",
-    ):
-        load_base_data.clear()
-        st.rerun()
-    st.markdown(
-        '<div class="fp-freshness">Refreshes automatically once a day.</div>',
-        unsafe_allow_html=True,
-    )
+appt_type = st.Page("pages/1_📋_Appointment_Type_Wise.py", title="Appointment Type", icon="📋")
+clinic = st.Page("pages/2_🏥_Clinic_Wise.py", title="Clinic", icon="🏥")
+doctor = st.Page("pages/3_🩺_Doctor_Wise.py", title="Doctor", icon="🩺")
 
-st.write("")
+show_clinic = st.Page("pages/4_🏥_Show_Clinic_Wise.py", title="Clinic", icon="🏥")
+show_customer = st.Page("pages/5_🧑_Show_Customer_Type_Wise.py", title="Customer Type", icon="🧑")
+show_diagnosis = st.Page("pages/6_🩹_Show_Diagnosis_Wise.py", title="Diagnosis", icon="🩹")
+show_followup_type = st.Page("pages/7_🔁_Show_Followup_Type_Wise.py", title="Follow-up Type", icon="🔁")
 
-delta = None
-if snap["mtd_pct"] is not None and snap["lmtd_pct"] is not None:
-    delta = f"{snap['mtd_pct'] - snap['lmtd_pct']:+.0f} pp vs last month"
-
-kpi_row(
-    [
-        ("Completed cases · MTD", f"{int(snap['mtd_completed']):,}", None),
-        ("Follow-ups created · MTD", f"{int(snap['mtd_followups']):,}", None),
-        ("Creation rate · MTD", fmt_pct(snap["mtd_pct"]), delta),
-    ]
+nav = st.navigation(
+    {
+        "Overview": [home],
+        "Creation Dashboard": [appt_type, clinic, doctor],
+        "Show % Dashboard": [show_clinic, show_customer, show_diagnosis, show_followup_type],
+    }
 )
-
-st.write("")
-
-kpi_row(
-    [
-        ("Completed cases · LMTD", f"{int(snap['lmtd_completed']):,}", None),
-        ("Follow-ups created · LMTD", f"{int(snap['lmtd_followups']):,}", None),
-        ("Creation rate · LMTD", fmt_pct(snap["lmtd_pct"]), None),
-    ]
-)
-
-st.write("")
-
-kpi_row(
-    [
-        (f"{label} creation rate", fmt_pct(pct), None)
-        for label, pct in snap["monthly_pct"].items()
-    ]
-)
-
-divider()
-eyebrow("Explore")
-
-cards = [
-    (
-        "pages/1_📋_Appointment_Type_Wise.py",
-        "By episode type",
-        "New Consultation, Vaccination and Follow Up, each split with and without an "
-        "add-on service — plus Procedure and Diagnostic/Imaging visits.",
-    ),
-    (
-        "pages/2_🏥_Clinic_Wise.py",
-        "By clinic",
-        "Every clinic side by side against a network-wide total, so a location's "
-        "trend is easy to read in context.",
-    ),
-    (
-        "pages/3_🩺_Doctor_Wise.py",
-        "By doctor",
-        "Individual doctor performance against a clinic-wide total, for coaching "
-        "and performance conversations.",
-    ),
-]
-
-cols = st.columns(3)
-for col, (path, title, body) in zip(cols, cards):
-    with col:
-        with st.container(border=True):
-            st.markdown('<div class="fp-card-marker"></div>', unsafe_allow_html=True)
-            st.markdown(f'<div class="fp-card-title">{title}</div>', unsafe_allow_html=True)
-            st.markdown(f'<div class="fp-card-body">{body}</div>', unsafe_allow_html=True)
-            st.page_link(path, label="Open dashboard →")
-
+nav.run()

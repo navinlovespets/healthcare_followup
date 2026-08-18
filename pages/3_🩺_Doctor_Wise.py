@@ -9,7 +9,6 @@ from dashboard.filters import render_filters
 from dashboard.page_common import render_dashboard_body, setup_page
 
 setup_page(
-    "Doctor",
     "Creation dashboard",
     "Doctor",
     "How reliably each doctor turns a completed visit into a scheduled follow-up, "

@@ -8,7 +8,6 @@ from dashboard.filters import render_filters
 from dashboard.page_common import render_dashboard_body, setup_page
 
 setup_page(
-    "Appointment Type",
     "Creation dashboard",
     "Appointment Type",
     "How often a completed visit turns into a scheduled follow-up, by episode type — "
