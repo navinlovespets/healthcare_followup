@@ -42,6 +42,15 @@ def inject_base_css():
         [data-testid="stIconMaterial"], span[class*="material-symbols"] {
             font-family: 'Material Symbols Outlined', 'Material Symbols Rounded', 'Material Icons' !important;
         }
+        /* The Home nav entry's label is derived from the entrypoint filename
+           ("streamlit app") - relabel it visually without renaming the file. */
+        [data-testid="stSidebarNavLink"] span[label="streamlit app"] p {
+            font-size: 0;
+        }
+        [data-testid="stSidebarNavLink"] span[label="streamlit app"] p::before {
+            content: "Home";
+            font-size: 1rem;
+        }
 
         footer { visibility: hidden; }
         header[data-testid="stHeader"] { background: transparent; }
