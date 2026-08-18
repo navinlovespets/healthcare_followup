@@ -127,10 +127,17 @@ def inject_base_css():
             margin-top: 2px;
         }
         div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) {
-            padding: 0.6rem 0.9rem !important;
+            width: fit-content !important;
+            margin-left: auto !important;
+        }
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) > div {
+            padding: 0.4rem 0.6rem !important;
         }
         div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) [data-testid="stVerticalBlock"] {
-            gap: 0.25rem !important;
+            gap: 0.15rem !important;
+        }
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) [data-testid="stElementContainer"] {
+            margin: 0 !important;
         }
         </style>
         """,
