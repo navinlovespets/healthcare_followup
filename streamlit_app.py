@@ -1,3 +1,5 @@
+from datetime import date
+
 import streamlit as st
 
 from dashboard import metrics
@@ -18,7 +20,7 @@ st.set_page_config(page_title=PRODUCT_NAME, layout="wide")
 require_login()
 inject_base_css()
 
-df = load_base_data()
+df = load_base_data(date.today())
 periods = metrics.build_periods(df)
 snap = metrics.network_snapshot(df, periods)
 
@@ -39,7 +41,7 @@ with fresh_col:
         load_base_data.clear()
         st.rerun()
     st.markdown(
-        '<div class="fp-freshness">Refreshes on next visit if 30+ min old.</div>',
+        '<div class="fp-freshness">Refreshes automatically once a day.</div>',
         unsafe_allow_html=True,
     )
 

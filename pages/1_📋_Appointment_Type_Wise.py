@@ -1,3 +1,5 @@
+from datetime import date
+
 import streamlit as st
 
 from dashboard import metrics
@@ -14,7 +16,7 @@ setup_page(
     "service, plus Procedure and Diagnostic/Imaging visits.",
 )
 
-df = load_base_data()
+df = load_base_data(date.today())
 periods = metrics.build_periods(df)
 
 filters = render_filters(df, exclude=(), key_prefix="apptype")

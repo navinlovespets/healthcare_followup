@@ -1,3 +1,5 @@
+from datetime import date
+
 import pandas as pd
 import streamlit as st
 
@@ -14,7 +16,7 @@ setup_page(
     "with a network-wide total for context.",
 )
 
-df = load_base_data()
+df = load_base_data(date.today())
 periods = metrics.build_periods(df)
 
 filters = render_filters(df, exclude=("clinic",), key_prefix="clinic")
