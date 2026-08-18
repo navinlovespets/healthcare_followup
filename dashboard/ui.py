@@ -120,6 +120,12 @@ def inject_base_css():
         .fp-card-body { color: #7c7b73; font-size: .9rem; line-height: 1.5; min-height: 44px; }
 
         .fp-footnote { color: #a8a79c; font-size: .8rem; }
+        .fp-freshness {
+            color: #a8a79c;
+            font-size: .82rem;
+            text-align: right;
+            white-space: nowrap;
+        }
         </style>
         """,
         unsafe_allow_html=True,
