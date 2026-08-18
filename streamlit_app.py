@@ -29,19 +29,17 @@ with header_col:
         "tracked by episode type, clinic, and doctor, updated daily.",
     )
 with fresh_col:
-    with st.container(border=True):
-        st.markdown('<div class="fp-fresh-marker"></div>', unsafe_allow_html=True)
-        if st.button(
-            f"Data as of {periods.max_date:%d %b %Y} · Refresh",
-            icon=":material/refresh:",
-            width="stretch",
-        ):
-            load_base_data.clear()
-            st.rerun()
-        st.markdown(
-            '<div class="fp-freshness">Refreshes on next visit if 30+ min old.</div>',
-            unsafe_allow_html=True,
-        )
+    if st.button(
+        f"Data as of {periods.max_date:%d %b %Y} · Refresh",
+        icon=":material/refresh:",
+        width="stretch",
+    ):
+        load_base_data.clear()
+        st.rerun()
+    st.markdown(
+        '<div class="fp-freshness">Refreshes on next visit if 30+ min old.</div>',
+        unsafe_allow_html=True,
+    )
 
 st.write("")
 

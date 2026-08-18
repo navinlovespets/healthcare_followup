@@ -124,20 +124,7 @@ def inject_base_css():
             color: #a8a79c;
             font-size: .78rem;
             text-align: center;
-            margin-top: 2px;
-        }
-        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) {
-            width: fit-content !important;
-            margin-left: auto !important;
-        }
-        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) > div {
-            padding: 0.4rem 0.6rem !important;
-        }
-        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) [data-testid="stVerticalBlock"] {
-            gap: 0.15rem !important;
-        }
-        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) [data-testid="stElementContainer"] {
-            margin: 0 !important;
+            margin-top: -8px;
         }
         </style>
         """,
