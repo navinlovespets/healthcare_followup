@@ -91,7 +91,7 @@ def inject_base_css():
             letter-spacing: .1em;
             font-size: 1rem;
             font-weight: 700;
-            color: #14130f;
+            color: #184f95;
             margin: 30px 0 4px 0;
         }
 
