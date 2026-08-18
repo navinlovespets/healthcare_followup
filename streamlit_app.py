@@ -29,12 +29,15 @@ snap = metrics.network_snapshot(df, periods)
 
 _, fresh_col = st.columns([4, 1.3])
 with fresh_col:
-    if st.button("Refresh", icon=":material/refresh:", width="stretch"):
+    if st.button(
+        f"Data as of {periods.max_date:%d %b %Y} · Refresh",
+        icon=":material/refresh:",
+        width="stretch",
+    ):
         load_base_data.clear()
         st.rerun()
     st.markdown(
-        f'<div class="fp-freshness">Data as of {periods.max_date:%d %b %Y} '
-        f"· auto-updates next time someone visits, if it's 30+ min old.</div>",
+        '<div class="fp-freshness">Refreshes on next visit if 30+ min old.</div>',
         unsafe_allow_html=True,
     )
 
