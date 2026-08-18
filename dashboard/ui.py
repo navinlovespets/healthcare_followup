@@ -124,7 +124,13 @@ def inject_base_css():
             color: #a8a79c;
             font-size: .78rem;
             text-align: center;
-            margin-top: 6px;
+            margin-top: 2px;
+        }
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) {
+            padding: 0.6rem 0.9rem !important;
+        }
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(div.fp-fresh-marker) [data-testid="stVerticalBlock"] {
+            gap: 0.25rem !important;
         }
         </style>
         """,
