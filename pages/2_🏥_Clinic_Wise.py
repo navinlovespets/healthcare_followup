@@ -6,8 +6,13 @@ from dashboard.data_loader import load_base_data
 from dashboard.filters import render_filters
 from dashboard.page_common import render_dashboard_body, setup_page
 
-setup_page("Clinic Wise — Creation Dashboard", "🏥")
-st.caption("Follow-up creation performance by clinic, plus a network-wide total.")
+setup_page(
+    "Clinic",
+    "Creation dashboard",
+    "Clinic",
+    "How reliably each clinic turns a completed visit into a scheduled follow-up, "
+    "with a network-wide total for context.",
+)
 
 df = load_base_data()
 periods = metrics.build_periods(df)

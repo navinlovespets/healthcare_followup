@@ -175,6 +175,20 @@ def creation_pct_table(completed: pd.DataFrame, followups: pd.DataFrame) -> pd.D
     return (followups / denom) * 100
 
 
+def network_snapshot(df: pd.DataFrame, periods: "Periods") -> dict:
+    """Unfiltered, whole-network MTD / LMTD creation rate - used for the home page."""
+    completed = row_counts(df, periods, followup_only=False)
+    followups = row_counts(df, periods, followup_only=True)
+    mtd_c, lmtd_c = completed["MTD"], completed["LMTD"]
+    mtd_f, lmtd_f = followups["MTD"], followups["LMTD"]
+    return {
+        "mtd_completed": mtd_c,
+        "mtd_followups": mtd_f,
+        "mtd_pct": (mtd_f / mtd_c * 100) if mtd_c else None,
+        "lmtd_pct": (lmtd_f / lmtd_c * 100) if lmtd_c else None,
+    }
+
+
 NO_ADD_ON_MASK_COLS = ("lab_imaging_flag", "procedure_flag")
 
 

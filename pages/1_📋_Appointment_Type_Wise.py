@@ -5,11 +5,13 @@ from dashboard.data_loader import load_base_data
 from dashboard.filters import render_filters
 from dashboard.page_common import render_dashboard_body, setup_page
 
-setup_page("Appointment Type Wise — Creation Dashboard", "📋")
-st.caption(
-    "Follow-up creation performance by episode type: New Consultation, Vaccination, "
-    "Follow Up (each with a without-add-on-service cut), Procedure, Diagnostic/Imaging, "
-    "and the running total."
+setup_page(
+    "Appointment Type",
+    "Creation dashboard",
+    "Appointment Type",
+    "How often a completed visit turns into a scheduled follow-up, by episode type — "
+    "New Consultation, Vaccination and Follow Up, each split with and without an add-on "
+    "service, plus Procedure and Diagnostic/Imaging visits.",
 )
 
 df = load_base_data()
