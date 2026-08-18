@@ -176,16 +176,30 @@ def creation_pct_table(completed: pd.DataFrame, followups: pd.DataFrame) -> pd.D
 
 
 def network_snapshot(df: pd.DataFrame, periods: "Periods") -> dict:
-    """Unfiltered, whole-network MTD / LMTD creation rate - used for the home page."""
+    """
+    Unfiltered, whole-network MTD / LMTD / trailing-month creation rate - used
+    for the home page. Month labels (periods.months) are computed off today's
+    date, so this always reflects the current rolling 4-month window - no
+    hardcoded month names.
+    """
     completed = row_counts(df, periods, followup_only=False)
     followups = row_counts(df, periods, followup_only=True)
     mtd_c, lmtd_c = completed["MTD"], completed["LMTD"]
     mtd_f, lmtd_f = followups["MTD"], followups["LMTD"]
+
+    monthly_pct = {}
+    for label, _, _ in periods.months:
+        c, f = completed[label], followups[label]
+        monthly_pct[label] = (f / c * 100) if c else None
+
     return {
         "mtd_completed": mtd_c,
         "mtd_followups": mtd_f,
         "mtd_pct": (mtd_f / mtd_c * 100) if mtd_c else None,
+        "lmtd_completed": lmtd_c,
+        "lmtd_followups": lmtd_f,
         "lmtd_pct": (lmtd_f / lmtd_c * 100) if lmtd_c else None,
+        "monthly_pct": monthly_pct,
     }
 
 

@@ -53,7 +53,26 @@ kpi_row(
     [
         ("Completed cases · MTD", f"{int(snap['mtd_completed']):,}", None),
         ("Follow-ups created · MTD", f"{int(snap['mtd_followups']):,}", None),
-        ("Network creation rate · MTD", fmt_pct(snap["mtd_pct"]), delta),
+        ("Creation rate · MTD", fmt_pct(snap["mtd_pct"]), delta),
+    ]
+)
+
+st.write("")
+
+kpi_row(
+    [
+        ("Completed cases · LMTD", f"{int(snap['lmtd_completed']):,}", None),
+        ("Follow-ups created · LMTD", f"{int(snap['lmtd_followups']):,}", None),
+        ("Creation rate · LMTD", fmt_pct(snap["lmtd_pct"]), None),
+    ]
+)
+
+st.write("")
+
+kpi_row(
+    [
+        (f"{label} creation rate", fmt_pct(pct), None)
+        for label, pct in snap["monthly_pct"].items()
     ]
 )
 
