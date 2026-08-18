@@ -9,7 +9,7 @@ from dashboard.filters import render_show_filters
 from dashboard.page_common_show import render_show_dashboard_body, setup_show_page
 
 setup_show_page(
-    "Show % dashboard",
+    "Show dashboard",
     "Diagnosis",
     "Of the follow-ups due for each diagnosis group, how many actually showed up — "
     "against a network-wide total.",

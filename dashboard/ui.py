@@ -61,7 +61,7 @@ def inject_base_css():
         .fp-kicker {
             text-transform: uppercase;
             letter-spacing: .14em;
-            font-size: .72rem;
+            font-size: .95rem;
             font-weight: 700;
             color: #2a78d6;
             margin: 0 0 6px 0;
@@ -91,7 +91,7 @@ def inject_base_css():
             letter-spacing: .1em;
             font-size: 1rem;
             font-weight: 700;
-            color: #2a78d6;
+            color: #14130f;
             margin: 30px 0 4px 0;
         }
 

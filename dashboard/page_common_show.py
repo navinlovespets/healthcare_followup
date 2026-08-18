@@ -59,7 +59,7 @@ def render_show_dashboard_body(
 
     st.write("")
     tab_pct, tab_completed, tab_due, tab_shown, tab_trend = st.tabs(
-        ["Show %", "Completed cases", "Due cases", "Shown cases", "Trend & comparison"]
+        ["Show", "Completed cases", "Due cases", "Shown cases", "Trend & comparison"]
     )
 
     with tab_pct:

@@ -79,7 +79,7 @@ kpi_row(
 # Show % - network snapshot
 # ---------------------------------------------------------------------------
 st.write("")
-eyebrow("Show % — network snapshot")
+eyebrow("Show — network snapshot")
 st.caption("Broad definition (includes a qualifying return within the window).")
 
 show_delta = None
@@ -147,7 +147,7 @@ for col, (path, title, body) in zip(cols, creation_cards):
             st.page_link(path, label="Open dashboard →")
 
 st.write("")
-eyebrow("Show % dashboard")
+eyebrow("Show dashboard")
 st.caption("Of the follow-ups that were due, how many actually showed up?")
 
 show_cards = [

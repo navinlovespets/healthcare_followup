@@ -22,7 +22,7 @@ nav = st.navigation(
     {
         "Overview": [home],
         "Creation Dashboard": [appt_type, clinic, doctor],
-        "Show % Dashboard": [show_clinic, show_customer, show_diagnosis, show_followup_type],
+        "Show Dashboard": [show_clinic, show_customer, show_diagnosis, show_followup_type],
     }
 )
 nav.run()

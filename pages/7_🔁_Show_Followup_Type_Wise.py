@@ -9,7 +9,7 @@ from dashboard.filters import render_show_filters
 from dashboard.page_common_show import render_show_dashboard_body, setup_show_page
 
 setup_show_page(
-    "Show % dashboard",
+    "Show dashboard",
     "Follow-up Type",
     "Of the follow-ups due of each type, how many actually showed up — "
     "against a network-wide total. Follow-up type is the kind of appointment "
