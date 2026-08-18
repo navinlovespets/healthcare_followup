@@ -122,8 +122,9 @@ def inject_base_css():
         .fp-footnote { color: #a8a79c; font-size: .8rem; }
         .fp-freshness {
             color: #a8a79c;
-            font-size: .82rem;
-            text-align: right;
+            font-size: .78rem;
+            text-align: center;
+            margin-top: 6px;
         }
         </style>
         """,

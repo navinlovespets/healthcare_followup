@@ -16,30 +16,31 @@ from dashboard.ui import (
 st.set_page_config(page_title=PRODUCT_NAME, layout="wide")
 inject_base_css()
 
-page_header(
-    ORG_KICKER,
-    PRODUCT_NAME,
-    "How reliably a completed appointment turns into a scheduled next step — "
-    "tracked by episode type, clinic, and doctor, updated daily.",
-)
-
 df = load_base_data()
 periods = metrics.build_periods(df)
 snap = metrics.network_snapshot(df, periods)
 
-_, fresh_col = st.columns([4, 1.3])
-with fresh_col:
-    if st.button(
-        f"Data as of {periods.max_date:%d %b %Y} · Refresh",
-        icon=":material/refresh:",
-        width="stretch",
-    ):
-        load_base_data.clear()
-        st.rerun()
-    st.markdown(
-        '<div class="fp-freshness">Refreshes on next visit if 30+ min old.</div>',
-        unsafe_allow_html=True,
+header_col, fresh_col = st.columns([2.6, 1.4], gap="large")
+with header_col:
+    page_header(
+        ORG_KICKER,
+        PRODUCT_NAME,
+        "How reliably a completed appointment turns into a scheduled next step — "
+        "tracked by episode type, clinic, and doctor, updated daily.",
     )
+with fresh_col:
+    with st.container(border=True):
+        if st.button(
+            f"Data as of {periods.max_date:%d %b %Y} · Refresh",
+            icon=":material/refresh:",
+            width="stretch",
+        ):
+            load_base_data.clear()
+            st.rerun()
+        st.markdown(
+            '<div class="fp-freshness">Refreshes on next visit if 30+ min old.</div>',
+            unsafe_allow_html=True,
+        )
 
 st.write("")
 
