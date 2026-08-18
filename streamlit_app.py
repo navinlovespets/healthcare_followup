@@ -1,6 +1,7 @@
 import streamlit as st
 
 from dashboard import metrics
+from dashboard.auth import require_login
 from dashboard.data_loader import load_base_data
 from dashboard.ui import (
     ORG_KICKER,
@@ -14,6 +15,7 @@ from dashboard.ui import (
 )
 
 st.set_page_config(page_title=PRODUCT_NAME, layout="wide")
+require_login()
 inject_base_css()
 
 df = load_base_data()

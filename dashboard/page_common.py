@@ -1,6 +1,7 @@
 import streamlit as st
 
 from dashboard import metrics
+from dashboard.auth import require_login
 from dashboard.ui import (
     comparison_bar_chart,
     fmt_pct,
@@ -18,6 +19,7 @@ TOP_N_DEFAULT = 12
 
 def setup_page(page_title: str, kicker: str, title: str, subtitle: str):
     st.set_page_config(page_title=f"{page_title} — Follow-up Performance", layout="wide")
+    require_login()
     inject_base_css()
     page_header(kicker, title, subtitle)
 
