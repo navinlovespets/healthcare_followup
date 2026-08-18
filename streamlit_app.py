@@ -27,17 +27,16 @@ df = load_base_data()
 periods = metrics.build_periods(df)
 snap = metrics.network_snapshot(df, periods)
 
-_, fresh_text, fresh_btn = st.columns([4, 3.4, 1], vertical_alignment="center", gap="small")
-with fresh_text:
+_, fresh_col = st.columns([4, 1.3])
+with fresh_col:
+    if st.button("Refresh", icon=":material/refresh:", width="stretch"):
+        load_base_data.clear()
+        st.rerun()
     st.markdown(
         f'<div class="fp-freshness">Data as of {periods.max_date:%d %b %Y} '
         f"· refreshes on reopen after 30 min.</div>",
         unsafe_allow_html=True,
     )
-with fresh_btn:
-    if st.button("Refresh", icon=":material/refresh:", type="tertiary"):
-        load_base_data.clear()
-        st.rerun()
 
 st.write("")
 
