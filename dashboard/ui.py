@@ -89,10 +89,10 @@ def inject_base_css():
         .fp-eyebrow {
             text-transform: uppercase;
             letter-spacing: .1em;
-            font-size: .7rem;
+            font-size: 1rem;
             font-weight: 700;
-            color: #a8a79c;
-            margin: 30px 0 2px 0;
+            color: #2a78d6;
+            margin: 30px 0 4px 0;
         }
 
         /* ---- KPI tiles ---------------------------------------------------*/
