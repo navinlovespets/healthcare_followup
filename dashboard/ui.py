@@ -92,6 +92,7 @@ def inject_base_css():
             font-size: 1rem;
             font-weight: 700;
             color: #52514e;
+            text-decoration: underline;
             margin: 30px 0 4px 0;
         }
 
