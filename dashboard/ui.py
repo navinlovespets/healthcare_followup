@@ -32,8 +32,15 @@ def inject_base_css():
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-        html, body, [class^="st-"], [class*=" st-"], [data-testid="stAppViewContainer"] {
+        /* Scoped to html/body only, relying on inheritance - Streamlit's own
+           icon elements (Material Symbols ligatures) set their own explicit
+           font-family and must keep it, or the icon glyphs render as raw
+           text like "keyboard_double_arrow_right" instead of an arrow. */
+        html, body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        [data-testid="stIconMaterial"], span[class*="material-symbols"] {
+            font-family: 'Material Symbols Outlined', 'Material Symbols Rounded', 'Material Icons' !important;
         }
 
         footer { visibility: hidden; }

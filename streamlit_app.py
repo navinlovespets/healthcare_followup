@@ -79,7 +79,8 @@ footer_l, footer_r = st.columns([4, 1])
 with footer_l:
     st.markdown(
         f'<span class="fp-footnote">Data current through '
-        f'{periods.max_date:%d %b %Y} · refreshes automatically every 30 minutes.</span>',
+        f'{periods.max_date:%d %b %Y} · pulled fresh whenever this page is opened '
+        f"and more than 30 minutes have passed since the last pull.</span>",
         unsafe_allow_html=True,
     )
 with footer_r:
